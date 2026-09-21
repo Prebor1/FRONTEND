@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Promise</title>
+</head>
+<body>
+    
+    <script>
+        const receptekLekerdez = new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                if (Math.random()<0.5)
+                    resolve([122, 685, 89, 24, 745])
+                reject("Az azonosítók lekérdezése nem sikerült.")
+            }, 2000)
+        });
+
+        const recept = (id) => new Promise( (resolve, reject) => {
+            setTimeout((id) => {
+                const recept = {
+                    id: 89,
+                    cim: 'Gulyás leves',
+                    kategoria: 'leves',
+                    ido: '180 perc',
+                    nehezseg: 3
+                };
+
+                if(Math.random()<0.5)
+                    resolve(recept);
+                reject("A recept lekérdezése nem sikerült")
+            }, 2500);
+        });
+
+        const receptKategoriaAlapjan = (kategoria) => new Promise( (resolve, reject) => {
+            const levesek = [
+                {
+                    id: 89,
+                    cim: 'Gulyás leves',
+                    kategoria: 'leves'
+                },
+                {
+                    id: 148,
+                    cim: 'Karalábé leves',
+                    kategoria: 'leves'
+                },
+                {
+                    id: 397,
+                    cim: 'Gyümölcsleves',
+                    kategoria: 'leves'
+                }
+            ];
+
+            setTimeout((kategoria => {
+                if (Math.random() < 0.9)
+                    resolve(levesek);
+                reject(`Nem sikerült lekértdezni`)
+            }))
+        })
+
+
+
+        receptekLekerdez
+        .then( azonositok =>{
+            console.log(azonositok);
+            return recept(azonositok[2]);
+        })
+        .then(recept => {
+            console.log(recept);
+            return receptKategoriaAlapjan(recept.kategoria)
+        })
+        .then( receptek => {
+            console.log(receptek);
+            return recept(receptek[0]);
+        })
+        .then( recept => {
+            console.log(recept);
+        })
+        .catch(error =>{
+            console.log(error);
+        });
+
+        console.log(receptekLekerdez)
+    </script>
+</body>
+</html>
