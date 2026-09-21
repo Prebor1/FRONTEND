@@ -43,44 +43,54 @@ $('blue-value').addEventListener("input", valueRGB);
 $("alpha-value").addEventListener("input", valueRGB);
 
 
+////////////////////////////////////////////////////////////////////////
+
 function rangeSize(){
 
     const szelesseg = $('width-range').value;
     const magassag = $('height-range').value;
     const borderRadius = $('border-range').value;
+    const forgatas = $("rotate-range").value;
 
     $("width-value").value = szelesseg;
     $("height-value").value = magassag;
     $("border-value").value = borderRadius;
+    $("rotate-value").value = forgatas;
 
     document.getElementById('rgb-box').style.width = `${szelesseg}px`;
     document.getElementById('rgb-box').style.height = `${magassag}px`;
     document.getElementById('rgb-box').style.borderRadius = `${borderRadius}px`;
+    document.getElementById('rgb-box').style.rotate = `${forgatas}deg`;
 }
 
 $('width-range').addEventListener("input", rangeSize);
 $('height-range').addEventListener("input", rangeSize);
 $('border-range').addEventListener("input", rangeSize);
+$('rotate-range').addEventListener("input", rangeSize);
 
 function valueSize(){
 
     const szelesseg = $('width-value').value;
     const magassag = $('height-value').value;
     const borderRadius = $('border-value').value;
+    const forgatas = $("rotate-value").value;
 
     $("width-range").value = szelesseg;
     $("height-range").value = magassag;
     $("border-range").value = borderRadius;
+    $("rotate-range").value = forgatas;
 
     document.getElementById('rgb-box').style.width = `${szelesseg}px`;
     document.getElementById('rgb-box').style.height = `${magassag}px`;
     document.getElementById('rgb-box').style.borderRadius = `${borderRadius}px`;
+    document.getElementById('rgb-box').style.rotate = `${forgatas}deg`;
 
 }
 
 $('width-value').addEventListener("input", valueSize);
 $('height-value').addEventListener("input", valueSize);
 $('border-value').addEventListener("input", valueSize);
+$('rotate-value').addEventListener("input", valueSize);
 
 
 
