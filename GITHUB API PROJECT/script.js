@@ -78,7 +78,7 @@ async function getUserData(){
 async function getRepos(){
 
     const reps = document.createElement("p");
-    reps.innerText = "REPOSITORIES (last 10):";
+    reps.innerText = "REPOSITORIES:";
     div2.appendChild(reps);
 
     //////////////////////////////////////////////////
@@ -94,7 +94,7 @@ async function getRepos(){
     try {
         let username = searchBar.value.trim();
 
-        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
@@ -141,7 +141,7 @@ async function displayRepo(){
     }
 
     
-    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
 
     if (!response.ok) {
         throw new Error(`HTTP error: ${response.status}`);
